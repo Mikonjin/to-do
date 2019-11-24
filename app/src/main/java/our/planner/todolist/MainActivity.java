@@ -3,6 +3,7 @@ package our.planner.todolist;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -26,14 +27,26 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class MainActivity extends AppCompatActivity {
 
     final List<String> list = new ArrayList<>();
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity2();
+            }
+        });
 
 
         final ListView ListView = findViewById(R.id.ListView);
@@ -60,12 +73,10 @@ public class MainActivity extends AppCompatActivity {
                         .setNegativeButton("No", null)
                         .create();
                 dialog.show();
-                            }
+            }
 
 
         });
-
-
 
 
 
@@ -94,6 +105,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
+
+    public void openActivity2() {
+        Intent intent = new Intent(this, Main2Activity.class);
+        startActivity(intent);
+    }
+
 
     @Override
     protected void onPause(){
